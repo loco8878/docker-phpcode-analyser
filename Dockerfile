@@ -15,6 +15,8 @@ RUN echo "memory_limit=-1" > $PHP_CONF_DIR/99_memory-limit.ini \
 
 RUN composer global init -s stable -q \
     && composer global require -n phpstan/phpstan:"$PHPSTAN_VERSION" \
+    && composer global require --dev phpstan/extension-installer \
+    && composer global require -n phpstan/phpstan-deprecation-rules \
     && composer global require -n phpcompatibility/php-compatibility \
     ## set coding standard PHPCompatibility
     && phpcs --config-set installed_paths $COMPOSER_HOME/vendor/phpcompatibility/php-compatibility \
